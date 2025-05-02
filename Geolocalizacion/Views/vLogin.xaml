@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Geolocalizacion.Views.vLogin"
+             xmlns:models="clr-namespace:Geolocalizacion.Models"
+             Title="vLogin"
+             BackgroundColor="white">
+
+    <Grid>
+
+        <Border
+            MinimumWidthRequest="300"
+            Padding="30"
+            Stroke="blue"
+            StrokeThickness="1"
+            BackgroundColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            StrokeShape="RoundRectangle 20"
+            >
+
+            <Border.Shadow>
+                <Shadow 
+                Brush="Blue" 
+                Offset="0,0" 
+                Radius="20" 
+                Opacity="0.4" 
+                    />
+            </Border.Shadow>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label Text="LOGIN" 
+                       TextColor="Blue"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="25"
+                       CharacterSpacing="0.5"
+                       />
+
+                <Label x:Name="emailLR"
+                       Text="El correo es requerido" 
+                       TextColor="Red" 
+                       IsVisible="False"
+                       />
+
+                <HorizontalStackLayout Spacing="5" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       >
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.Envelope}"
+                       FontSize="20"
+                       TextColor="blue">
+                    </Label>
+
+                    <Label Text="Correo *" 
+                       TextColor="Blue" 
+                       />
+
+                </HorizontalStackLayout>
+                
+
+                <Entry x:Name="emailEntry" 
+                       Placeholder="Ingrese su correo" 
+                       Keyboard="Email"  
+                       TextColor="Black"
+                       />
+
+                <Label x:Name="passwordLR"
+                       Text="La contraseña es requerida" 
+                       TextColor="Red" 
+                       IsVisible="False"
+                       />
+                
+                <HorizontalStackLayout Spacing="5" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       >
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.Key}"
+                       FontSize="20"
+                       TextColor="blue">
+                    </Label>
+
+                    <Label Text="Contraseña *" 
+                       TextColor="Blue" 
+                       />
+
+                </HorizontalStackLayout>
+
+                <Entry x:Name="passwordEntry" 
+                       Placeholder="Ingrese su contraseña" 
+                       IsPassword="True" 
+                       TextColor="Black"
+                       />
+
+                <Button Text="Iniciar Sesión"
+                        Style="{StaticResource btnBlue}"
+                        Clicked="Button_Clicked">
+
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="FontAwesome"
+                            Glyph="{x:Static models:IconFont.LockOpen}"
+                            Size="15"
+                            Color="White"
+                            />
+                    </Button.ImageSource>
+                </Button> 
+
+            </VerticalStackLayout>
+        </Border>
+        
+    </Grid>
+
+</ContentPage>
