@@ -116,12 +116,55 @@
                        TextColor="White"
                            />
 
+                    <Label Text="Mis Registros" 
+                       TextColor="White" 
+                       />
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="5" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Fill" 
+                                       Padding="10, 0"
+                                       >
+
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.ClipboardCheck}"
+                       FontSize="20"
+                       TextColor="White"
+                           />
+
                     <Label Text="Registro de Asistencia" 
                        TextColor="White" 
                        />
 
                 </HorizontalStackLayout>
 
+                <HorizontalStackLayout Spacing="5" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Fill" 
+                                       Padding="10, 0"
+                                       >
+
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.Users}"
+                       FontSize="20"
+                       TextColor="White"
+                           />
+
+                    <Label Text="Usuarios" 
+                       TextColor="White" 
+                       />
+
+                </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="5" 
                                        VerticalOptions="Center"

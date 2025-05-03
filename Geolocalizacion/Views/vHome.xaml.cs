@@ -40,11 +40,22 @@ public partial class vHome : ContentPage
         OnMenuTapped(sender, e);
     }
 
-    
-
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         OnMenuTapped(sender, e);
         await Shell.Current.GoToAsync("//LoginPage");
     }
+
+    private void TapGestureRecognizer_Tapped_1(object sender, TappedEventArgs e)
+    {
+        MainContent.Content = new vHistoryRegisters();
+        OnMenuTapped(sender, e);
+    }
+
+    private void TapGestureRecognizer_Tapped_2(object sender, TappedEventArgs e)
+    {
+        MainContent.Content = new vUserManagement();
+        OnMenuTapped(sender, e);
+    }
+
 }
