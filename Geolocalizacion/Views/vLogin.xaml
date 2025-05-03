@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Geolocalizacion.Views.vLogin"
              xmlns:models="clr-namespace:Geolocalizacion.Models"
-             Title="vLogin"
+             Title=""
              BackgroundColor="white">
 
     <Grid>
@@ -93,6 +93,12 @@
                        Placeholder="Ingrese su contraseña" 
                        IsPassword="True" 
                        TextColor="Black"
+                       />
+
+                <Label x:Name="responseLR"
+                       Text="Correo o contraseña incorrecta." 
+                       TextColor="Red" 
+                       IsVisible="False"
                        />
 
                 <Button Text="Iniciar Sesión"

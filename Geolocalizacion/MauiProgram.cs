@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Geolocalizacion.Services;
+using Geolocalizacion.ServicesImp;
+using Geolocalizacion.Views;
+using Microsoft.Extensions.Logging;
 
 namespace Geolocalizacion
 {
@@ -15,6 +18,9 @@ namespace Geolocalizacion
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("fa-solid-900.ttf", "FontAwesome");
                 });
+
+            builder.Services.AddSingleton<ILoginService, LoginService>();
+            builder.Services.AddTransient<vLogin>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

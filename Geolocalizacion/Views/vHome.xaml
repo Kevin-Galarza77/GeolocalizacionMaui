@@ -1,12 +1,152 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Geolocalizacion.Views.vHome"
-             Title="vHome">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:models="clr-namespace:Geolocalizacion.Models"
+             BackgroundColor="White">
+
+    <Grid x:Name="MainLayout">
+ 
+        <VerticalStackLayout> 
+            <Grid ColumnDefinitions="*,*" BackgroundColor="Blue">
+                <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.Bars}"
+                       FontSize="30"
+                       TextColor="White"
+                       Margin="25,10"
+                       Grid.Column="0"
+                       HorizontalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.MapLocationDot}"
+                       FontSize="30"
+                       TextColor="White"
+                       Margin="25,10"
+                       Grid.Column="1"
+                       HorizontalOptions="End"/>
+            </Grid>
+
+            <ContentView x:Name="MainContent"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 BackgroundColor="White"
+                 Padding="0"/>
+
+        </VerticalStackLayout>
+ 
+        <Grid x:Name="SideMenu"
+              BackgroundColor="Blue"
+              WidthRequest="250"
+              IsVisible="False"
+              TranslationX="-250" 
+              HorizontalOptions="Start"
+              ZIndex="99"
+              >
+            
+            <StackLayout Spacing="10">
+                
+                <Grid ColumnDefinitions="*,*">
+
+                    <Label Text="Menú" 
+                           TextColor="White" 
+                           FontSize="24"
+                           Grid.Column="0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"
+                           Margin="20,0"
+                           />
+
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.RectangleXmark}"
+                       FontSize="25"
+                       TextColor="White"
+                       Margin="20"
+                       Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                           >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+
+                <HorizontalStackLayout Spacing="5" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Fill" 
+                                       Padding="10, 0"
+                                       >
+
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAttendanceTapped"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.LocationDot}"
+                       FontSize="20"
+                       TextColor="White"
+                           />
+
+                    <Label Text="Asistencia" 
+                       TextColor="White" 
+                       />
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="5" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Fill" 
+                                       Padding="10, 0"
+                                       >
+
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAttendanceHistoryTapped"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.ClipboardList}"
+                       FontSize="20"
+                       TextColor="White"
+                           />
+
+                    <Label Text="Historial de Asistencia" 
+                       TextColor="White" 
+                       />
+
+                </HorizontalStackLayout>
+
+
+                <HorizontalStackLayout Spacing="5" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Fill" 
+                                       Padding="10, 0"
+                                       >
+
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+
+                    <Label FontFamily="FontAwesome"
+                       Text="{x:Static models:IconFont.ArrowRightFromBracket}"
+                       FontSize="20"
+                       TextColor="White"
+                           />
+
+                    <Label Text="Cerrar Sesión" 
+                       TextColor="White" 
+                       />
+
+                </HorizontalStackLayout>
+
+            </StackLayout>
+            
+        </Grid>
+
+    </Grid>
+
 </ContentPage>

@@ -4,18 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Geolocalizacion"
-    Shell.FlyoutBehavior="Flyout"
+    xmlns:views="clr-namespace:Geolocalizacion.Views"
+     Shell.FlyoutBehavior="Disabled"
     Title="Geolocalizacion">
 
     <ShellContent
-        Title="Login"
-        ContentTemplate="{DataTemplate local:Views.vLogin}"
-        Route="LoginPage" />
-
-    <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:Views.vHome}"
+        ContentTemplate="{DataTemplate views:vHome}"
         Route="HomePage" />
 
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate views:vLogin}"
+        Route="LoginPage" />
 
 </Shell>
