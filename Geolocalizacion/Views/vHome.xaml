@@ -116,7 +116,7 @@
                        TextColor="White"
                            />
 
-                    <Label Text="Historial de Asistencia" 
+                    <Label Text="Registro de Asistencia" 
                        TextColor="White" 
                        />
 

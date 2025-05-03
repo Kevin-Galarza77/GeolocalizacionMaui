@@ -10,5 +10,7 @@ namespace Geolocalizacion.Services
     public interface IExitService
     {
         public Task<ApiResponse<Object>> createExit(IncomeExitData incomeExitData);
+        public Task<ApiResponse<List<ExitResponse>>> getExitByRangeAndUser(String init, string end, int user);
+
     }
 }

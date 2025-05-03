@@ -10,6 +10,7 @@ namespace Geolocalizacion.Services
     public interface IIncomeService
     {
         public Task<ApiResponse<Object>> createIncome(IncomeExitData incomeExitData);
-            public string getUrl();
+        public Task<ApiResponse<List<IncomeResponse>>> getIncomeByRangeAndUser(String init, string end, int user);
+        public string getUrl();
     }
 }

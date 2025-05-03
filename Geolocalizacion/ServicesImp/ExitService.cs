@@ -33,5 +33,24 @@ namespace Geolocalizacion.ServicesImp
 
             return data;
         }
+
+        public async Task<ApiResponse<List<ExitResponse>>> getExitByRangeAndUser(string init, string end, int user)
+        {
+            string url_ = url + "/history/" + user + "?fecha_inicio=" + init + "&fecha_fin=" + end;
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", bearerToken);
+
+            var response = await client.GetAsync(url_);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var data = JsonSerializer.Deserialize<ApiResponse<List<ExitResponse>>>(responseBody, options);
+
+            return data;
+        }
+
     }
 }
