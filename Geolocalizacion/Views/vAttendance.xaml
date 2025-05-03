@@ -2,11 +2,14 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Geolocalizacion.Models"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="Geolocalizacion.Views.vAttendance">
 
-    <VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
 
-        <Label FontFamily="FontAwesome"
+            <Label FontFamily="FontAwesome"
                Text="{x:Static models:IconFont.User}"
                FontSize="100"
                HorizontalOptions="Center"
@@ -14,46 +17,68 @@
                Margin="25"
                />
 
-        <Grid ColumnDefinitions="*,*">
+            <Grid ColumnDefinitions="*,*">
 
-            <Button Text="Ingresar"
+                <Button Text="Ingresar"
                     Grid.Column="0"
                     HorizontalOptions="Center"
                     Background="Green"
                     TextColor="White"
-                    Padding="30,0"
+                    Padding="20,0"
+                    Clicked="Button_Clicked"
                     >
 
-                <Button.ImageSource>
-                    <FontImageSource
+                    <Button.ImageSource>
+                        <FontImageSource
                             FontFamily="FontAwesome"
                             Glyph="{x:Static models:IconFont.PersonArrowDownToLine}"
                             Size="15"
                             Color="White"
                             />
-                </Button.ImageSource>
-            </Button>
+                    </Button.ImageSource>
+                </Button>
 
-            <Button Text="Salir"
+                <Button Text="Salir"
                     Grid.Column="1"
                     HorizontalOptions="Center"
                     Background="Red"
                     TextColor="White"
-                    Padding="50,0"
+                    Padding="30,0"
+                    Clicked="Button_Clicked_1"
                     >
 
-                <Button.ImageSource>
-                    <FontImageSource
+                    <Button.ImageSource>
+                        <FontImageSource
                             FontFamily="FontAwesome"
                             Glyph="{x:Static models:IconFont.PersonArrowUpFromLine}"
                             Size="15"
                             Color="White"
                             />
-                </Button.ImageSource>
-            </Button>
-        </Grid>
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
 
 
-    </VerticalStackLayout>
+            <Label x:Name="alertLR"
+               Text="**Se requiete acceso al gps**" 
+               TextColor="Red"
+               Margin="0,20,0,0"
+               HorizontalOptions="Center"
+               IsVisible="False"
+                       />
+
+            <maps:Map x:Name="map"
+                  IsTrafficEnabled="True"
+                  MapType="Street"
+                  IsShowingUser="True"
+                  IsZoomEnabled="False"
+                  IsScrollEnabled="False"
+                  Margin="0, 20"
+                  HeightRequest="500"
+                  >
+            </maps:Map>
+ 
+        </VerticalStackLayout>
+    </ScrollView>
     
 </ContentView>

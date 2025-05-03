@@ -22,8 +22,10 @@ namespace Geolocalizacion
             builder.Services.AddSingleton<ILoginService, LoginService>();
             builder.Services.AddTransient<vLogin>();
 
+            builder.UseMauiApp<App>().UseMauiMaps();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

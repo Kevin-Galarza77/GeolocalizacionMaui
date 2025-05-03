@@ -1,4 +1,5 @@
-namespace Geolocalizacion.Views; 
+namespace Geolocalizacion.Views;
+
 public partial class vHome : ContentPage
 {
 
@@ -7,8 +8,7 @@ public partial class vHome : ContentPage
     public vHome()
 	{
 		InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, false);
-        MainContent.Content = new vAttendance();
+        MainContent.Content = new vAttendanceHistory();
     }
 
     private async void OnMenuTapped(object sender, EventArgs e)
@@ -30,7 +30,7 @@ public partial class vHome : ContentPage
 
     private void OnAttendanceTapped(object sender, EventArgs e)
     { 
-        MainContent.Content= new vAttendance();
+        MainContent.Content= new vAttendance(this);
         OnMenuTapped(sender, e);
     }
 

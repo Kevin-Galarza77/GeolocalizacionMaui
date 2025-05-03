@@ -1,5 +1,6 @@
 using Geolocalizacion.Models;
 using Geolocalizacion.Services;
+using Microsoft.Maui.Controls;
 
 namespace Geolocalizacion.Views;
 
@@ -17,55 +18,37 @@ public partial class vLogin : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-
-        Preferences.Set("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaW1lbmV6a2V2MTA0MEBnbWFpbC5jb20iLCJuYmYiOjE3NDYyMzk5ODQsImlzcyI6IktFQVgtQkFDS0VORCIsImV4cCI6MTc0NjI4MzE4NCwiaWF0IjoxNzQ2MjM5OTg0LCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImp0aSI6ImQ1YjMyMjcxLWE3NDQtNDk3ZS1hZDE4LTIzZWU5NTkwMTc3NyJ9.7mQEcOIa0XUj21w0_JepzqhXU9vdCjV9gdcUn9FfLOw");
-        Preferences.Set("username", "jimenezkev1040@gmail.com");
-        Preferences.Set("roleId", 1);
-        Preferences.Set("userId", 1);
-
-        //Preferences.Set("token", response.Data.Token);
-        //Preferences.Set("username", response.Data.Username);
-        //Preferences.Set("roleId", response.Data.RoleId);
-        //Preferences.Set("userId", response.Data.UserId);
-         
-
-        await Shell.Current.GoToAsync("//HomePage");
-
-        /*
-
         String password = passwordEntry.Text;
         String email = emailEntry.Text;
 
         if (await ValidateForm(email, password))
         {
-            var response = await loginService.Login(new LoginData(email, password));
-
-            if (response != null && response.Status)
+            try
             {
+                var response = await loginService.Login(new LoginData(email, password));
 
-                Preferences.Set("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaW1lbmV6a2V2MTA0MEBnbWFpbC5jb20iLCJuYmYiOjE3NDYyMzk5ODQsImlzcyI6IktFQVgtQkFDS0VORCIsImV4cCI6MTc0NjI4MzE4NCwiaWF0IjoxNzQ2MjM5OTg0LCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImp0aSI6ImQ1YjMyMjcxLWE3NDQtNDk3ZS1hZDE4LTIzZWU5NTkwMTc3NyJ9.7mQEcOIa0XUj21w0_JepzqhXU9vdCjV9gdcUn9FfLOw");
-                Preferences.Set("username", "jimenezkev1040@gmail.com");
-                Preferences.Set("roleId", 1);
-                Preferences.Set("userId", 1);
+                if (response != null && response.Status)
+                {
+                    Preferences.Set("token", response.Data.Token);
+                    Preferences.Set("username", response.Data.Username);
+                    Preferences.Set("roleId", response.Data.RoleId);
+                    Preferences.Set("userId", response.Data.UserId);
 
-                //Preferences.Set("token", response.Data.Token);
-                //Preferences.Set("username", response.Data.Username);
-                //Preferences.Set("roleId", response.Data.RoleId);
-                //Preferences.Set("userId", response.Data.UserId);
+                    await Shell.Current.GoToAsync("//HomePage");
 
-                Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-                RegisterRoutes();
-
-                await Shell.Current.GoToAsync("//HomePage");
-
+                }
+                else
+                {
+                    await AnimateError(responseLR);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await AnimateError(responseLR);
+                await DisplayAlert("Error", ex.Message + "  >>> " + loginService.getUrl(), "OK");
+                Console.WriteLine(ex.Message);
             }
 
-        }
-        */
+        } 
     }
 
     private async Task<Boolean> ValidateForm(string email, string password)

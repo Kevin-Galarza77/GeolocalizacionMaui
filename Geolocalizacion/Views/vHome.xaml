@@ -2,12 +2,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Geolocalizacion.Views.vHome"
              xmlns:models="clr-namespace:Geolocalizacion.Models"
-             BackgroundColor="White">
+             Title="Home"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
 
     <Grid x:Name="MainLayout">
- 
-        <VerticalStackLayout> 
-            <Grid ColumnDefinitions="*,*" BackgroundColor="Blue">
+
+        <Grid RowDefinitions="Auto,*">
+            
+            <Grid Grid.Row="0" ColumnDefinitions="*,*" BackgroundColor="Blue">
                 <Label FontFamily="FontAwesome"
                        Text="{x:Static models:IconFont.Bars}"
                        FontSize="30"
@@ -30,12 +33,11 @@
             </Grid>
 
             <ContentView x:Name="MainContent"
-                 Grid.Row="1"
-                 Grid.Column="1"
+                 Grid.Row="1" 
                  BackgroundColor="White"
                  Padding="0"/>
 
-        </VerticalStackLayout>
+        </Grid>
  
         <Grid x:Name="SideMenu"
               BackgroundColor="Blue"
@@ -46,7 +48,7 @@
               ZIndex="99"
               >
             
-            <StackLayout Spacing="10">
+            <StackLayout Spacing="20">
                 
                 <Grid ColumnDefinitions="*,*">
 
@@ -64,7 +66,7 @@
                        Text="{x:Static models:IconFont.RectangleXmark}"
                        FontSize="25"
                        TextColor="White"
-                       Margin="20"
+                       Margin="20" 
                        Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="Center"

@@ -1,15 +1,13 @@
 ﻿using Geolocalizacion.Models;
 using Geolocalizacion.Services;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
+using System.Text.Json; 
 
 namespace Geolocalizacion.ServicesImp
 {
     public class LoginService: ILoginService
     {
-        private string url = "http://localhost:8080/api/auth/login";
+        private string url =  UrlService.url + "auth/login";
 
         public async Task<ApiResponse<LoginResponse>> Login(LoginData loginData)
         {
@@ -27,6 +25,11 @@ namespace Geolocalizacion.ServicesImp
             var data = JsonSerializer.Deserialize<ApiResponse<LoginResponse>>(responseBody, options);
 
             return data;
+        }
+
+        public string getUrl()
+        {
+            return url;
         }
 
     }

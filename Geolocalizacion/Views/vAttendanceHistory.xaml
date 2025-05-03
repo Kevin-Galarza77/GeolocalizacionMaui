@@ -1,12 +1,91 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Geolocalizacion.Models"
              x:Class="Geolocalizacion.Views.vAttendanceHistory">
-    <VerticalStackLayout>
-        <Label 
-            Text="historicos"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            TextColor="Black"/>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            
+            <Label Text="Registros de Ingresos y Salidas"
+               FontSize="20"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center"
+               TextColor="Black"
+               FontAttributes="Bold"
+               Margin="10, 0, 0, 10"
+               />
+
+            <Label Text="Rango de Fecha:"
+                 FontSize="15"
+                 HorizontalTextAlignment="Start"
+                 HorizontalOptions="Start"
+                 TextColor="Black"
+                 FontAttributes="Bold"
+                 Margin="0,0,0,10"
+             />
+
+            <HorizontalStackLayout Spacing="10">
+
+                <VerticalStackLayout BackgroundColor="Gray"
+                                     Padding="8">
+
+                    <Label
+                        Text="Desde"
+                        FontAttributes="Bold"
+                    />
+
+                    <DatePicker
+                    x:Name="dateInitPicker"
+                    Format="yyyy-MM-dd" 
+                                    />
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Background="Gray"
+                    Padding="8">
+                    <Label
+                        Text="Hasta"
+                        FontAttributes="Bold"
+                     />
+
+                    <DatePicker
+                    x:Name="dateEndPicker"
+                    Format="yyyy-MM-dd" 
+                                    />
+                </VerticalStackLayout>
+
+                <Button BackgroundColor="Green" 
+                        HeightRequest="20">
+
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="FontAwesome"
+                            Glyph="{x:Static models:IconFont.MagnifyingGlass}"
+                            Size="15"
+                            Color="White"
+                            />
+                    </Button.ImageSource>
+                </Button>
+
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="recordsView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" Padding="5" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Fecha}" />
+                                <Label Text="{Binding Hora}" />
+                                <Label Text="{Binding Latitud}" />
+                                <Label Text="{Binding Longitud}" />
+                                <Label Text="{Binding Tipo}" TextColor="{Binding TipoColor}" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentView>
