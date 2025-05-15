@@ -52,5 +52,30 @@ namespace Geolocalizacion.ServicesImp
         public string getUrl(){
             return url;
         }
+
+        public async Task<ApiResponse<List<RangeIncome>>> getIncomeByRange(string init, string end)
+        {
+            var endpoint = $"{UrlService.url}income/historyRange?fecha_inicio={init}&fecha_fin={end}";
+
+            client.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", bearerToken);
+
+            var response = await client.GetAsync(endpoint);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<RangeIncome>>>(responseBody, options);
+
+            return apiResponse;
+        }
+
+
+
+
+
     }
 }

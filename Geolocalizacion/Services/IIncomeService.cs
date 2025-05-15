@@ -12,5 +12,8 @@ namespace Geolocalizacion.Services
         public Task<ApiResponse<Object>> createIncome(IncomeExitData incomeExitData);
         public Task<ApiResponse<List<IncomeResponse>>> getIncomeByRangeAndUser(String init, string end, int user);
         public string getUrl();
+
+        public Task<ApiResponse<List<RangeIncome>>> getIncomeByRange(string init, string end);
+
     }
 }

@@ -8,7 +8,7 @@ using Geolocalizacion.Services;
 
 namespace Geolocalizacion.ServicesImp
 {
-    public class ExitService:IExitService
+    public class ExitService : IExitService
     {
         private readonly string url = UrlService.url + "exit";
         private readonly HttpClient client = new HttpClient();
@@ -50,6 +50,30 @@ namespace Geolocalizacion.ServicesImp
             var data = JsonSerializer.Deserialize<ApiResponse<List<ExitResponse>>>(responseBody, options);
 
             return data;
+        }
+
+        public async Task<ApiResponse<List<RangeExit>>> getExitByRange(string init, string end)
+        {
+            {
+                var endpoint = $"{UrlService.url}exit/historyRange?fecha_inicio={init}&fecha_fin={end}";
+
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", bearerToken);
+
+                var response = await client.GetAsync(endpoint);
+                var responseBody = await response.Content.ReadAsStringAsync();
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var apiResponse = JsonSerializer.Deserialize<ApiResponse<List<RangeExit>>>(responseBody, options);
+
+                return apiResponse;
+            }
+
+
         }
 
     }
