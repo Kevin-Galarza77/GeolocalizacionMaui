@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Geolocalizacion.Views.vUserRegister"
+             xmlns:models="clr-namespace:Geolocalizacion.Models"
+             Title="Registro" >
+
+    <ScrollView>
+        
+        <Grid>
+            <Border
+            MinimumWidthRequest="300"
+            Padding="30"
+            Stroke="blue"
+            StrokeThickness="1"
+            BackgroundColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            StrokeShape="RoundRectangle 20">
+
+                <Border.Shadow>
+                    <Shadow 
+                    Brush="Blue" 
+                    Offset="0,0" 
+                    Radius="20" 
+                    Opacity="0.4" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="REGISTRO"
+                       TextColor="Blue"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="25"
+                       CharacterSpacing="0.5" />
+
+                    <Entry Placeholder="Nombre" x:Name="firstNameEntry" TextColor="Black"/>
+                    <Entry Placeholder="Apellido" x:Name="lastNameEntry" TextColor="Black"/>
+                    <Entry Placeholder="Cédula" x:Name="cardIdEntry" Keyboard="Numeric" TextColor="Black"/>
+                    <Entry Placeholder="Email" x:Name="emailEntry" Keyboard="Email" TextColor="Black"/>
+                    <Entry Placeholder="Teléfono" x:Name="phoneEntry" Keyboard="Telephone" TextColor="Black"/>
+                    <Entry Placeholder="Contraseña" x:Name="passwordEntry" IsPassword="True" TextColor="Black"/>
+                    <Entry Placeholder="Dirección" x:Name="addressEntry" TextColor="Black"/>
+
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="¿Activo?" TextColor="Black" VerticalOptions="Center"/>
+                        <Switch x:Name="statusSwitch" IsToggled="True"/>
+                    </HorizontalStackLayout>
+
+                    <Picker x:Name="rolePicker" Title="Seleccionar rol" TextColor="Black">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Admin</x:String>
+                                <x:String>User</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <!-- Botón de Registro -->
+                    <Button Text="Registrar"
+                        Style="{StaticResource btnBlue}"
+                        Clicked="Button_Clicked">
+                    </Button>
+
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>
