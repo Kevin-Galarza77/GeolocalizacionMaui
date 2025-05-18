@@ -8,7 +8,7 @@ public partial class vHome : ContentPage
     public vHome()
 	{
 		InitializeComponent();
-        MainContent.Content = new vAttendanceHistory();
+        MainContent.Content = new vHistoryRegisters();
     }
 
     private async void OnMenuTapped(object sender, EventArgs e)

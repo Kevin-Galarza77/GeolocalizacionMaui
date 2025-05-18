@@ -22,6 +22,7 @@ public partial class vAttendanceHistory : ContentView
         if (dateInitPicker.Date > dateEndPicker.Date)
         {
             alertLR.IsVisible = true;
+            recordsView.ItemsSource = new List<Register>();
         }
         else
         {
@@ -47,7 +48,7 @@ public partial class vAttendanceHistory : ContentView
                 {
                     foreach (var item in response.Data)
                     {
-                        listRegister.Add(new Register(item.date, item.time, item.latitude, item.longitude, true));
+                        listRegister.Add(new Register(item.date, item.time, item.latitude, item.longitude, true, ""));
                     }
                 }
 
@@ -77,12 +78,11 @@ public partial class vAttendanceHistory : ContentView
                 { 
                     foreach (var item in response.Data)
                     {
-                        listRegister.Add(new Register(item.date, item.time, item.latitude, item.longitude, false));
+                        listRegister.Add(new Register(item.date, item.time, item.latitude, item.longitude, false, ""));
                     }
-
-                    recordsView.ItemsSource = listRegister.OrderByDescending(r => r.DateTime).ToList();
-
                 }
+
+                recordsView.ItemsSource = listRegister.OrderByDescending(r => r.DateTime).ToList();
             }
         }
         catch (Exception ex)

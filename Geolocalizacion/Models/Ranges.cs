@@ -17,7 +17,8 @@ namespace Geolocalizacion.Models
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string cardId { get; set; }
-        public string Tipo => incomeId ? "ingreso" : "salida";
+        public string fullName { get; set; }
+        public string Tipo => incomeId ? "ING" : "SAL";
         public Color TipoColor => incomeId ? Colors.Green : Colors.Red;
         public bool incomeId { get; set; }
         public DateTime DateTime { get; set; }
@@ -33,6 +34,8 @@ namespace Geolocalizacion.Models
             firstName = _firstName;
             lastName = _lastName;
             cardId = _cardId;
+
+            fullName = _lastName + " " + _firstName;
 
             DateTime = DateTime.ParseExact($"{date} {time}", "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
         }

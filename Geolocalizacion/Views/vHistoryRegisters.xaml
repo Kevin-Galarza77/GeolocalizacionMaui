@@ -2,66 +2,149 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="Geolocalizacion.Views.vHistoryRegisters"
+             xmlns:models="clr-namespace:Geolocalizacion.Models"
              Loaded="LoadRangeDataAsync">
 
-    <VerticalStackLayout Padding="10" Spacing="10">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
 
-        <!-- Selección de fechas -->
-        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center"
-            VerticalOptions="Center">
-            <VerticalStackLayout>
-                <Label Text="Fecha inicio" FontAttributes="Bold"/>
-                <DatePicker x:Name="dpStartDate" Date="{x:Static sys:DateTime.Today}" />
-            </VerticalStackLayout>
-            <VerticalStackLayout>
-                <Label Text="Fecha fin" FontAttributes="Bold"/>
-                <DatePicker x:Name="dpEndDate" Date="{x:Static sys:DateTime.Today}" />
-            </VerticalStackLayout>
-        </HorizontalStackLayout>
+            <Label Text="Historial de Asistencia"
+               FontSize="20"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center"
+               TextColor="Black"
+               FontAttributes="Bold"
+               Margin="10, 0, 0, 0"
+               />
 
-        <!-- Botón para buscar -->
-        <Button Text="Buscar ingresos" Clicked="OnSearchClicked" />
+            <Label x:Name="alertLR"
+                    Text="**La Fecha Final no puede ser menor a la inicial**" 
+                    TextColor="Red" 
+                    Margin="0,0,0,15"
+                    IsVisible="False"
+                    FontSize="12"
+                   HorizontalOptions="Center"
+                    />
 
-        <!-- Buscador por nombre o cédula -->
-        <SearchBar Placeholder="Buscar por nombre o cédula" TextChanged="OnSearchChanged" />
+            <Grid>
 
-        <!-- Lista de resultados -->
-        <CollectionView ItemsSource="{Binding PagedData}">
-            <CollectionView.Header>
-                <Grid ColumnDefinitions="*,*,*,*,*" Padding="5" BackgroundColor="#DDD" ColumnSpacing="15">
-                    <Label Text="Apellido" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center" />
-                    <Label Text="Cédula" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center" />
-                    <Label Text="Longitud" FontAttributes="Bold" Grid.Column="2" HorizontalTextAlignment="Center" />
-                    <Label Text="Latitud" FontAttributes="Bold" Grid.Column="3" HorizontalTextAlignment="Center" />
-                    <Label Text="Tipo" FontAttributes="Bold" Grid.Column="4" HorizontalTextAlignment="Center" />
-                </Grid>
-            </CollectionView.Header>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="*,*,*,*,*" Padding="5" ColumnSpacing="4">
-                        <Label Text="{Binding lastName}" Grid.Column="0" HorizontalTextAlignment="Center" />
-                        <Label Text="{Binding cardId}" Grid.Column="1" HorizontalTextAlignment="Center" />
-                        <Label Text="{Binding longitude}" Grid.Column="2" HorizontalTextAlignment="Center" />
-                        <Label Text="{Binding latitude}" Grid.Column="3" HorizontalTextAlignment="Center" />
+                <VerticalStackLayout BackgroundColor="Gray"
+                                     Grid.Row="0" Grid.Column="0"
+                                     HorizontalOptions="Center"
+                                     Padding="8">
 
-                        <!-- Tipo con color según ingreso/salida -->
-                        <Frame Grid.Column="4" Padding="2" CornerRadius="2"
-                       BackgroundColor="{Binding TipoColor}" HorizontalOptions="Center">
-                            <Label Text="{Binding Tipo}" TextColor="White" HorizontalTextAlignment="Center" />
-                        </Frame>
+                    <Label
+                        Text="Desde"
+                        FontAttributes="Bold"
+                        FontSize="12"
+                    />
+
+                    <DatePicker
+                    x:Name="dpStartDate"
+                    Format="yyyy-MM-dd" 
+                    FontSize="12"
+                    Date="{x:Static sys:DateTime.Today}" />
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                      Grid.Row="0" Grid.Column="1"
+                    Background="Gray" HorizontalOptions="Center"
+                    Padding="8">
+                    <Label
+                        Text="Hasta"
+                        FontAttributes="Bold"
+                        FontSize="12"
+                     />
+
+                    <DatePicker
+                    x:Name="dpEndDate"
+                    Format="yyyy-MM-dd" 
+                    FontSize="12"
+
+                    Date="{x:Static sys:DateTime.Today}"/>
+                </VerticalStackLayout>
+
+                <Button BackgroundColor="Green"  
+                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                        Clicked="OnSearchClicked"
+                        Margin="0, 10, 0, 0">
+
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="FontAwesome"
+                            Glyph="{x:Static models:IconFont.MagnifyingGlass}"
+                            Size="15"
+                            Color="White"
+                            />
+                    </Button.ImageSource>
+                </Button>
+
+            </Grid>
+
+            <!-- Buscador por nombre o cédula -->
+            <SearchBar Placeholder="Buscar por nombre o cédula" TextChanged="OnSearchChanged" 
+                   BackgroundColor="#DDD" TextColor="Black" FontSize="12"/>
+
+            <CollectionView ItemsSource="{Binding PagedData}">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*,*,*,*" Padding="5" BackgroundColor="Blue" ColumnSpacing="15">
+                        <Label FontSize="10" VerticalOptions="Center" Text="Nombre" FontAttributes="Bold" Grid.Column="0" HorizontalTextAlignment="Center" /> 
+                        <Label FontSize="10" VerticalOptions="Center" Text="Cédula" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center" />
+                        <Label FontSize="10" VerticalOptions="Center" Text="Fecha" FontAttributes="Bold" Grid.Column="2" HorizontalTextAlignment="Center" />
+                        <Label FontSize="10" VerticalOptions="Center" Text="Tipo" FontAttributes="Bold" Grid.Column="3" HorizontalTextAlignment="Center" />
+                        <Label FontSize="10" VerticalOptions="Center" Text="Ver" FontAttributes="Bold" Grid.Column="4" HorizontalTextAlignment="Center" />
                     </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                </CollectionView.Header>
 
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,*,*,*,*" Padding="5" ColumnSpacing="4" BackgroundColor="#DDD"> 
+                            <Label FontSize="10" VerticalOptions="Center" TextColor="Black" Text="{Binding fullName}" Grid.Column="0" HorizontalTextAlignment="Center" />
+                            <Label FontSize="10" VerticalOptions="Center" TextColor="Black" Text="{Binding cardId}" Grid.Column="1" HorizontalTextAlignment="Start" />
+                            <Label FontSize="10" VerticalOptions="Center" TextColor="Black" Text="{Binding DateTime}" Grid.Column="2" HorizontalTextAlignment="Center" />
+                            <Label FontSize="10" VerticalOptions="Center" Text="{Binding Tipo}" TextColor="{Binding TipoColor}" Grid.Column="3" HorizontalTextAlignment="Center" />
+                            <Button BackgroundColor="Green" 
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                        HeightRequest="5" 
+                                        WidthRequest="5"
+                                        Grid.Column="4"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="Button_Clicked">
 
-        <!-- Paginado -->
-        <HorizontalStackLayout Spacing="10" Margin="0,10,0,0" HorizontalOptions="Center">
-            <Button Text="⏪" Clicked="OnPrevPageClicked"/>
-            <Label Text="{Binding PageInfo}" HorizontalTextAlignment="Center"/>
-            <Button Text="⏩" Clicked="OnNextPageClicked"/>
-        </HorizontalStackLayout>
+                                <Button.ImageSource>
+                                    <FontImageSource
+                                            FontFamily="FontAwesome"
+                                            Glyph="{x:Static models:IconFont.Eye}"
+                                            Size="15"
+                                            Color="White" 
+                                            />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+ 
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" BackgroundColor="#DDD" >
+                
+                <Button Text="⏪" Clicked="OnPrevPageClicked" BackgroundColor="Blue"/>
+                <Label Text="{Binding PageInfo}" HorizontalTextAlignment="Center" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <Button Text="⏩" Clicked="OnNextPageClicked" BackgroundColor="Blue"/>
+                
+            </HorizontalStackLayout>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentView>

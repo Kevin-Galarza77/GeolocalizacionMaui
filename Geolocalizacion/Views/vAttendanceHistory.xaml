@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="10">
             
-            <Label Text="Registro de Asistencia"
+            <Label Text="Mis Registros"
                FontSize="20"
                HorizontalTextAlignment="Center"
                HorizontalOptions="Center"
@@ -15,31 +15,24 @@
                Margin="10, 0, 0, 10"
                />
 
-            <Label Text="Rango de Fecha"
-                 FontSize="15"
-                 HorizontalTextAlignment="Start"
-                 HorizontalOptions="Start"
-                 TextColor="Gray"
-                 FontAttributes="Bold"
-                 Margin="0,0,0,2.5"
-             />
-
             <Label x:Name="alertLR"
-                    Text="**La Ficha Final no puedes ser menor a la inicial**" 
+                    Text="**La Fecha Final no puede ser menor a la inicial**" 
                     TextColor="Red" 
-                    Margin="0,0,0,5"
+                    Margin="0,0,0,15"
                     IsVisible="False"
+                    FontSize="12"
+                   HorizontalOptions="Center"
                     />
 
             <Grid>
                 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" /> 
                 </Grid.ColumnDefinitions>
 
                 <VerticalStackLayout BackgroundColor="Gray"
@@ -50,11 +43,13 @@
                     <Label
                         Text="Desde"
                         FontAttributes="Bold"
+                        FontSize="12"
                     />
 
                     <DatePicker
                     x:Name="dateInitPicker"
                     Format="yyyy-MM-dd" 
+                    FontSize="12"
                                     />
 
                 </VerticalStackLayout>
@@ -66,19 +61,21 @@
                     <Label
                         Text="Hasta"
                         FontAttributes="Bold"
+                        FontSize="12"
                      />
 
                     <DatePicker
                     x:Name="dateEndPicker"
                     Format="yyyy-MM-dd" 
-                                    />
+                    FontSize="12"               />
+                    
                 </VerticalStackLayout>
 
                 <Button BackgroundColor="Green" 
                         HeightRequest="20"
-                          Grid.Row="0" Grid.Column="3"
-                        HorizontalOptions="Center"
-                        Clicked="Button_Clicked">
+                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                        Clicked="Button_Clicked"
+                        Margin="0, 20">
 
                     <Button.ImageSource>
                         <FontImageSource
@@ -92,8 +89,7 @@
 
             </Grid>
 
-            <CollectionView x:Name="recordsView"
-                            Margin="0,20">
+            <CollectionView x:Name="recordsView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="Gray"
