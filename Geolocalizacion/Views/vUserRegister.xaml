@@ -6,7 +6,6 @@
              Title="Registro" >
 
     <ScrollView>
-        
         <Grid>
             <Border
             MinimumWidthRequest="300"
@@ -28,11 +27,11 @@
 
                 <VerticalStackLayout Spacing="10">
                     <Label Text="REGISTRO"
-                       TextColor="Blue"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"
-                       FontSize="25"
-                       CharacterSpacing="0.5" />
+                    TextColor="Blue"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    FontSize="25"
+                    CharacterSpacing="0.5" />
 
                     <Entry Placeholder="Nombre" x:Name="firstNameEntry" TextColor="Black"/>
                     <Entry Placeholder="Apellido" x:Name="lastNameEntry" TextColor="Black"/>
@@ -40,6 +39,10 @@
                     <Entry Placeholder="Email" x:Name="emailEntry" Keyboard="Email" TextColor="Black"/>
                     <Entry Placeholder="Teléfono" x:Name="phoneEntry" Keyboard="Telephone" TextColor="Black"/>
                     <Entry Placeholder="Contraseña" x:Name="passwordEntry" IsPassword="True" TextColor="Black"/>
+
+                    <!-- Campo de Repetir Contraseña -->
+                    <Entry Placeholder="Repetir Contraseña" x:Name="confirmPasswordEntry" IsPassword="True" TextColor="Black"/>
+
                     <Entry Placeholder="Dirección" x:Name="addressEntry" TextColor="Black"/>
 
                     <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
@@ -58,8 +61,8 @@
 
                     <!-- Botón de Registro -->
                     <Button Text="Registrar"
-                        Style="{StaticResource btnBlue}"
-                        Clicked="Button_Clicked">
+                    Style="{StaticResource btnBlue}"
+                    Clicked="Button_Clicked">
                     </Button>
 
                 </VerticalStackLayout>
