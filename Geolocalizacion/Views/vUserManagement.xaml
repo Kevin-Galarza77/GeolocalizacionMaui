@@ -14,7 +14,7 @@
         </HorizontalStackLayout>
 
         <!-- Buscador por nombre o cédula -->
-        <SearchBar Placeholder="Buscar por nombre o cédula"
+        <SearchBar Placeholder="Buscar por nombre o apellido"
                    TextChanged="OnSearchChanged" />
 
         <!-- Lista de usuarios -->
