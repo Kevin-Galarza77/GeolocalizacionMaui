@@ -4,6 +4,6 @@ namespace Geolocalizacion.Services
 {
     public interface IRegistroService
     {
-        Task<ApiResponse<Object>> RegistrarUsuario(UsuarioRegistro usuario);
+        Task<RegisterResponse> RegistrarUsuario(UsuarioRegistro usuario);
     }
 }

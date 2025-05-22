@@ -11,6 +11,8 @@
             <Button Text="Buscar registros" Clicked="OnSearchClicked" />
             <!-- Botón Registrar -->
             <Button Text="Registrar" Clicked="OnRegisterClicked" />
+
+            <Button Text="Editar" Clicked="Button_Clicked" />
         </HorizontalStackLayout>
 
         <!-- Buscador por nombre o cédula -->

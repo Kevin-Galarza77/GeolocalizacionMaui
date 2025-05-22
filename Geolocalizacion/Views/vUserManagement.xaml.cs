@@ -44,4 +44,9 @@ public partial class vUserManagement : ContentView
     {
         await Navigation.PushAsync(new vUserRegister());
     }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

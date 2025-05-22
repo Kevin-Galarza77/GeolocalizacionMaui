@@ -64,6 +64,7 @@
                     Style="{StaticResource btnBlue}"
                     Clicked="Button_Clicked">
                     </Button>
+                    
 
                 </VerticalStackLayout>
             </Border>
